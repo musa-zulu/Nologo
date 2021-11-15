@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nologo", "Nologo\Nologo.csproj", "{EDC9E5C6-915D-4C17-88EB-443CF63F00CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nologo.Domain", "Nologo.Domain\Nologo.Domain.csproj", "{A5BBFD58-D8ED-4C7C-A21F-D47C19CB4084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nologo.Infrastructure", "Nologo.Infrastucture\Nologo.Infrastructure.csproj", "{F7B11D06-00C3-4214-9F39-651D82322BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nologo.Persistence", "Nologo.Persistence\Nologo.Persistence.csproj", "{7DCA93AC-1B8E-41C9-B8A4-ECFEB7262B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nologo.Service", "Nologo.Service\Nologo.Service.csproj", "{F49DD5B1-C4B8-4E52-9357-DF0A9AEE30EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDC9E5C6-915D-4C17-88EB-443CF63F00CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC9E5C6-915D-4C17-88EB-443CF63F00CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC9E5C6-915D-4C17-88EB-443CF63F00CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC9E5C6-915D-4C17-88EB-443CF63F00CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5BBFD58-D8ED-4C7C-A21F-D47C19CB4084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5BBFD58-D8ED-4C7C-A21F-D47C19CB4084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5BBFD58-D8ED-4C7C-A21F-D47C19CB4084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5BBFD58-D8ED-4C7C-A21F-D47C19CB4084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7B11D06-00C3-4214-9F39-651D82322BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7B11D06-00C3-4214-9F39-651D82322BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7B11D06-00C3-4214-9F39-651D82322BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7B11D06-00C3-4214-9F39-651D82322BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DCA93AC-1B8E-41C9-B8A4-ECFEB7262B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCA93AC-1B8E-41C9-B8A4-ECFEB7262B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCA93AC-1B8E-41C9-B8A4-ECFEB7262B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCA93AC-1B8E-41C9-B8A4-ECFEB7262B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F49DD5B1-C4B8-4E52-9357-DF0A9AEE30EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49DD5B1-C4B8-4E52-9357-DF0A9AEE30EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49DD5B1-C4B8-4E52-9357-DF0A9AEE30EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49DD5B1-C4B8-4E52-9357-DF0A9AEE30EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7DD6424-08C6-4175-97FF-D7961B0952EC}
+	EndGlobalSection
+EndGlobal
