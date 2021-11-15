@@ -22,8 +22,4 @@
 	  <ProjectReference Include="..\Nologo.Service\Nologo.Service.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Mapping\" />
-	</ItemGroup>
-
 </Project>

@@ -12,6 +12,7 @@ using Nologo.Domain.Settings;
 using Nologo.Persistence;
 using Nologo.Service.Contracts;
 using Nologo.Service.Implementation;
+using Nologo.Infrastructure.Mapping;
 
 namespace Nologo.Infrastructure.Extension
 {
@@ -31,7 +32,8 @@ namespace Nologo.Infrastructure.Extension
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {
-
+                mc.AddProfile(new RecipeProfile());
+                mc.AddProfile(new IngredientsProfile());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             serviceCollection.AddSingleton(mapper);
@@ -44,6 +46,10 @@ namespace Nologo.Infrastructure.Extension
         public static void AddTransientServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IDateTimeService, DateTimeService>();
+            serviceCollection.AddTransient<IAccountService, AccountService>();
+            serviceCollection.AddTransient<IEmailService, MailService>();
+            serviceCollection.AddTransient<IIngredientService, IngredientService>();
+            serviceCollection.AddTransient<IRecipeService, RecipeService>();
         }
         public static void AddSwaggerOpenAPI(this IServiceCollection serviceCollection)
         {

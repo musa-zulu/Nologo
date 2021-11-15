@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Nologo.Domain.Common;
+using Nologo.Domain.Entities;
 
 namespace Nologo.Persistence
 {
@@ -17,6 +18,8 @@ namespace Nologo.Persistence
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
+        public DbSet<Ingredients> Ingredients { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
