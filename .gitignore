@@ -28,3 +28,5 @@ source/server/.vs/Nologo/DesignTimeBuild/.dtbcache.v2
 source/server/Nologo.Domain.Tests/Auth/.editorconfig
 
 source/server/Nologo/wwwroot/*
+source/client/node_modules/
+source/client/.angular/
