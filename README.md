@@ -110,6 +110,8 @@ we can see that all the Layers are dependent only on the Core Layers
   <p>
     This is a react app found under client folder.
 
+	restore nuget packages 
+	and install material: ng add @angular/material
   </p>
 </details>
 
