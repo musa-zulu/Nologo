@@ -26,7 +26,7 @@ namespace Nologo.Service.Implementation
                 _applicationDbContext.Set<T>().Add(entity);
                 return new Response<bool>
                 {
-                    Message = $"{nameof(T)} saved successfully!",
+                    Message = $"Object saved successfully!",
                     Succeeded = await _applicationDbContext.SaveChangesAsync() > 0
                 };
             }
@@ -35,7 +35,7 @@ namespace Nologo.Service.Implementation
                 return new Response<bool>
                 {
                     Succeeded = false,
-                    Message = $"{nameof(T)} wasn't saved due to the following reason \n" + ex.Message
+                    Message = $"Object wasn't saved due to the following reason \n" + ex.Message
                 };
             }
         }
@@ -48,7 +48,7 @@ namespace Nologo.Service.Implementation
                 _applicationDbContext.Set<T>().AddRange(entities);
                 return new Response<bool>
                 {
-                    Message = $"{nameof(T)}'s were saved successfully!",
+                    Message = $"Object's were saved successfully!",
                     Succeeded = await _applicationDbContext.SaveChangesAsync() > 0
                 };
             }
@@ -71,7 +71,7 @@ namespace Nologo.Service.Implementation
                 {
                     Data = response,
                     Succeeded = true,
-                    Message = $"{nameof(T)}'s were retrieved successfully!"
+                    Message = $"Object's were retrieved successfully!"
                 };
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace Nologo.Service.Implementation
                 {
                     Data = response,
                     Succeeded = true,
-                    Message = $"{nameof(T)}'s were retrieved successfully!"
+                    Message = $"Object's were retrieved successfully!"
                 };
             }
             catch (Exception ex)
@@ -115,7 +115,7 @@ namespace Nologo.Service.Implementation
                 {
                     Data = response,
                     Succeeded = true,
-                    Message = $"{nameof(T)}'s was retrieved successfully!"
+                    Message = $"Object's was retrieved successfully!"
                 };
             }
             catch (Exception ex)
@@ -135,7 +135,7 @@ namespace Nologo.Service.Implementation
                 _applicationDbContext.Set<T>().Remove(entity);
                 return new Response<bool>
                 {
-                    Message = $"{nameof(T)} was deleted successfully!",
+                    Message = $"Object was deleted successfully!",
                     Succeeded = await _applicationDbContext.SaveChangesAsync() > 0
                 };
             }
@@ -156,7 +156,7 @@ namespace Nologo.Service.Implementation
                 _applicationDbContext.Set<T>().RemoveRange(entities);
                 return new Response<bool>
                 {
-                    Message = $"{nameof(T)}'s were deleted successfully!",
+                    Message = $"Object's were deleted successfully!",
                     Succeeded = await _applicationDbContext.SaveChangesAsync() > 0
                 };
             }
@@ -177,7 +177,7 @@ namespace Nologo.Service.Implementation
                 _applicationDbContext.Set<T>().Update(entity);
                 return new Response<bool>
                 {
-                    Message = $"{nameof(T)}'s were deleted successfully!",
+                    Message = $"Object's were deleted successfully!",
                     Succeeded = await _applicationDbContext.SaveChangesAsync() > 0
                 };
             }
