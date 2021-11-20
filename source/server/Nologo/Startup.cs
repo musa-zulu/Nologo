@@ -12,6 +12,8 @@ using System.IO;
 using Nologo.Infrastructure.Extension;
 using Nologo.Persistence;
 using Nologo.Service;
+using Nologo.Configuration;
+using Microsoft.OpenApi.Models;
 
 namespace Nologo
 {
@@ -31,27 +33,65 @@ namespace Nologo
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddController();
-
             services.AddDbContext(Configuration, configRoot);
 
-            services.AddIdentityService(Configuration);
+            services.AddIdentityConfiguration(Configuration);
+
+            services.AddController();
 
             services.AddAutoMapper();
 
-            services.AddScopedServices();
+            //services.AddIdentityService(Configuration);
 
-            services.AddTransientServices();
-
-            services.AddSwaggerOpenAPI();
+            //services.AddSwaggerOpenAPI();
 
             services.AddMailSetting(Configuration);
 
-            services.AddServiceLayer();
+           //services.AddServiceLayer();
 
             services.AddVersion();
 
             services.AddFeatureManagement();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Inform the JWT token with: Bearer {your token}",
+                    Name = "Authorization",
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+
+                c.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "Nologo API",
+                    Version = "v1"
+                });
+            });
+
+            services.AddCors();
+
+            services.AddScopedServices();
+
+            services.AddTransientServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log, IServiceProvider service)
@@ -61,8 +101,19 @@ namespace Nologo
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
+
+            app.UseHttpsRedirection();
+
             app.UseCors(options =>
                  options.WithOrigins("http://localhost:3000")
+                 .AllowAnyOrigin()
                  .AllowAnyHeader()
                  .AllowAnyMethod());
 
@@ -75,7 +126,6 @@ namespace Nologo
             app.UseAuthentication();
 
             app.UseAuthorization();
-            app.ConfigureSwagger();
 
             RunMigrations(service);
 

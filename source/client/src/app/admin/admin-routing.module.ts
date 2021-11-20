@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ManageRecipesComponent } from '../components/admin/manage-recipes/manage-recipes.component';
+import { RecipeFormComponent } from '../components/admin/recipe-form/recipe-form.component';
 
 const adminRoutes: Routes = [
   {
     path: '',
     children: [
-     // { path: 'new', component: BookFormComponent },
-     // { path: ':id', component: BookFormComponent },
-     // { path: '', component: ManageBooksComponent },
+      { path: 'new', component: RecipeFormComponent },
+      { path: ':id', component: RecipeFormComponent },
+      { path: '', component: ManageRecipesComponent },
     ]
   }
 ];

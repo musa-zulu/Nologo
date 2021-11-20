@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     private subscriptionService: SubscriptionService) { }
 
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
-  get username() {
-    return this.loginForm.get('username');
+  get email() {
+    return this.loginForm.get('email');
   }
 
   get password() {

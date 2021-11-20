@@ -30,3 +30,4 @@ source/server/Nologo.Domain.Tests/Auth/.editorconfig
 source/server/Nologo/wwwroot/*
 source/client/node_modules/
 source/client/.angular/
+source/server/.vs/Nologo/v17/.suo

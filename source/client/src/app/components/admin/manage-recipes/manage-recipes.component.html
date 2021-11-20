@@ -1,0 +1,58 @@
+<div class="viewer-wrapper">
+    <div class="viewer-title mat-elevation-z2">
+        <div class="viewer-title-spacer">
+            <h3>All recipes</h3>
+            <button class="mat-elevation-z4" mat-raised-button [routerLink]='["/admin/recipes/new"]'>Add Book</button>
+        </div>
+    </div>
+    <div class="viewer-body">
+        <div class="full-width">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+
+            <mat-card-content>
+                <div table-container class="mat-elevation-z2">
+                    <table mat-table [dataSource]="dataSource" matSort>
+
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                            <td mat-cell *matCellDef="let row"> {{row.recipeId}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Recipe Name </th>
+                            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="author">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
+                            <td mat-cell *matCellDef="let row"> {{row.author}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="instructions">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Instructions </th>
+                            <td mat-cell *matCellDef="let row"> {{row.instructions}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="operation">
+                            <th mat-header-cell *matHeaderCellDef> Operation </th>
+                            <td mat-cell *matCellDef="let row">
+                                <button mat-icon-button color="primary" [routerLink]="['/admin/recipes/',row.recipeId]">
+                                    <mat-icon aria-label="Edit">edit</mat-icon>
+                                </button>
+                                <button mat-icon-button color="accent" (click)="deleteConfirm(row.recipeId)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[ 5, 10, 25, 50 ]"></mat-paginator>
+                </div>
+            </mat-card-content>
+        </div>
+    </div>
+</div>

@@ -12,17 +12,6 @@ namespace Nologo.Infrastructure.Extension
             app.UseMiddleware<CustomExceptionMiddleware>();
         }
 
-        public static void ConfigureSwagger(this IApplicationBuilder app)
-        {
-            app.UseSwagger();
-
-            app.UseSwaggerUI(setupAction =>
-            {
-                setupAction.SwaggerEndpoint("/swagger/OpenAPISpecification/swagger.json", "Nologo Architecture API");
-                setupAction.RoutePrefix = "OpenAPI";
-            });
-        }
-
         public static void ConfigureSwagger(this ILoggerFactory loggerFactory)
         {
             loggerFactory.AddSerilog();

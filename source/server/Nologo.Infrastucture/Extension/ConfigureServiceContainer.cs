@@ -13,6 +13,7 @@ using Nologo.Persistence;
 using Nologo.Service.Contracts;
 using Nologo.Service.Implementation;
 using Nologo.Infrastructure.Mapping;
+using Microsoft.AspNetCore.Identity;
 
 namespace Nologo.Infrastructure.Extension
 {
@@ -42,11 +43,11 @@ namespace Nologo.Infrastructure.Extension
         public static void AddScopedServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            serviceCollection.AddScoped<IdentityContext>();
         }
         public static void AddTransientServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IDateTimeService, DateTimeService>();
-            serviceCollection.AddTransient<IAccountService, AccountService>();
             serviceCollection.AddTransient<IEmailService, MailService>();
             serviceCollection.AddTransient<IIngredientService, IngredientService>();
             serviceCollection.AddTransient<IRecipeService, RecipeService>();

@@ -14,6 +14,7 @@ import { NgMaterialModule } from './ng-material/ng-material.module';
 import { ErrorInterceptorService } from './interceptors/error-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     UserRegistrationComponent,
     HomeComponent,
     NavBarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RecipeCardComponent
   ],
   imports: [
     NgMaterialModule,

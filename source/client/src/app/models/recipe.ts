@@ -6,5 +6,6 @@ export class Recipe {
   author: string;
   recipeFileName: string;
   instructions: string;
+  dateAdded: Date;
   ingredients: Ingredients[];
 }

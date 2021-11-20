@@ -57,7 +57,16 @@ Nologo API solution is built on Onion Architecture with all essential feature us
 ### Step 2: Restore nuget packages and install packages for the client project
 ### Step 3: Create Database (Sample is for Microsoft SQL Server)
 
-Plese run the script file "InitialScript" under documents\scripts to create your database
+Please open Visual studio and go to Tools -> NuGet Package Manager -> Package Manager Console
+Set Default project to : Nologo.Persitence
+Then run this command Update-Database -context IdentityContext
+
+Run the following script 
+
+  INSERT INTO [NologoDb].[dbo].[AspNetRoles] ([Id],[Name],[NormalizedName])
+  VALUES (NEWID(), 'ADMIN','ADMIN')
+  INSERT INTO [NologoDb].[dbo].[AspNetRoles] ([Id],[Name],[NormalizedName])
+  VALUES (NEWID(), 'USER','USER')
 
 ### Step 4: Build and run application
 

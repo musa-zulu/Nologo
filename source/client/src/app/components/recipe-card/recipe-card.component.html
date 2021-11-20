@@ -1,0 +1,17 @@
+<mat-card class="recipe-card mat-elevation-z2" [class.on-recipe-card-hover]="isActive" (mouseover)="isActive=true"
+    (mouseout)="isActive=false">
+    <mat-card-content class="image-card">
+        <a [routerLink]="['/recipes/details/',recipe.recipeId]" matTooltip="{{recipe.name}}" matTooltipClass="example-tooltip"
+            aria-label="Book title"><img class="preview-image" mat-card-image src="/Upload/{{recipe.coverFileName}}"
+                alt="Book cover image"></a>
+    </mat-card-content>
+    <mat-card-content>
+        <div class="card-title">
+            <a [routerLink]="['/recipes/details/',recipe.recipeId]">
+                <strong>{{recipe.name}}</strong>
+            </a>
+        </div>
+        <p>{{recipe.price | currency : 'INR'}}</p>
+        <app-addtocart [recipeId]="recipe.recipeId"></app-addtocart>
+    </mat-card-content>
+</mat-card>

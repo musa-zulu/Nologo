@@ -1,0 +1,49 @@
+<div class="viewer-wrapper">
+    <div class="viewer-title mat-elevation-z2">
+        <div class="viewer-title-spacer">
+            <h3>{{formTitle}} Recipe</h3>
+        </div>
+    </div>
+    <div class="viewer-body">
+        <div class="left-div">
+            <mat-card class="mat-elevation-z2">
+                <mat-card-content>
+                    <form enctype="multipart/form-data" [formGroup]="recipeForm" (ngSubmit)="saveRecipeData()">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Name" formControlName="name" required>
+                            <mat-error *ngIf="name.touched && name.invalid">Name is required</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <textarea matInput placeholder="Instructions" formControlName="instructions" cdkTextareaAutosize cdkAutosizeMinRows="6" required>
+                            </textarea>
+                            <mat-error *ngIf="instructions.touched && instructions.invalid">Instructions are required</mat-error>
+                        </mat-form-field>
+                        
+                        <mat-card-actions align="right">
+                            <div fxFlex></div>
+                            <button type="submit" mat-raised-button color="primary">SAVE</button>
+                            <button type="button" mat-raised-button color="warn" (click)="cancel()">CANCEL</button>
+                        </mat-card-actions>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="right-div">
+            <div class="viewer-title">
+                <h6>Image Preview</h6>
+            </div>
+            <mat-card class="mat-elevation-z2">
+                <mat-card-content class="image-card">
+                    <img class="preview-image" mat-card-image src={{recipeImagePath}} alt="No image available">
+                </mat-card-content>
+                <mat-card-content>
+                    <div class="upload-btn-wrapper mat-elevation-z2">
+                        <button class="btn-upload" type="button" mat-raised-button>Upload image</button>
+                        <input type="file" (change)="uploadImage($event)" />
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

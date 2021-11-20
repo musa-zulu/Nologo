@@ -25,7 +25,7 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.userData.userTypeId === UserType.admin) {
+    if (this.userData.role === UserType.admin) {
       return true;
     }
 
@@ -41,7 +41,7 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canLoad(route: Route): boolean {
     const url = `/${route.path}`;
-    if (this.userData.userTypeId === UserType.admin) {
+    if (this.userData.role === UserType.admin) {
       return true;
     }
     this.router.navigate(['/login'], { queryParams: { returnUrl: url } });

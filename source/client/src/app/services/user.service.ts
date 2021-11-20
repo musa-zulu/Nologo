@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,27 +14,17 @@ export class UserService {
   cartItemcount$ = new Subject<any>();
 
   constructor(private http: HttpClient) {
-    this.baseURL = '/api/accounts/';
+    this.baseURL = this.getBaseUrl();
   }
 
   registerUser(userdetails) {
-    return this.http.post(this.baseURL, userdetails)
+    return this.http.post(this.baseURL + 'account/new-account', userdetails)
       .pipe(map(response => {
         return response;
       }));
   }
 
-  validateUserName(userName: string) {
-    return this.http.get(this.baseURL + 'validateUserName/' + userName)
-      .pipe(map(response => {
-        return response;
-      }));
-  }
-
-  validateEmail(email: string) {
-    return this.http.get(this.baseURL + 'validateEmail/' + email)
-    .pipe(map(response => {
-      return response;
-    }));
+  public getBaseUrl(): string {
+    return environment.baseUrl;
   }
 }
