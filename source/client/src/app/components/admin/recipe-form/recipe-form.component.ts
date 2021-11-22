@@ -44,7 +44,7 @@ export class RecipeFormComponent implements OnInit, OnDestroy {
     this.recipeForm = this.fb.group({
       recipeId: 0,
       name: [''],
-      ingredients: ['', Validators.required],
+      ingredients: [''],
       instructions: ['', Validators.required]
     });
 
