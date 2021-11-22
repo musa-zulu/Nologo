@@ -1,11 +1,13 @@
-import { Ingredients } from "./ingredients";
-
 export class Recipe {
-  recipeId:number;
+  recipeId:string;
   name: string;
   author: string;
   recipeFileName: string;
   instructions: string;
-  dateAdded: Date;
-  ingredients: Ingredients[];
+  dateCreated: Date;
+  ingredients: Ingredient[];
+}
+
+export class Ingredient {
+  name: string;
 }

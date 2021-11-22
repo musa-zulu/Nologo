@@ -1,6 +1,8 @@
 ﻿using Nologo.Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nologo.Domain.Entities
 {
@@ -10,8 +12,11 @@ namespace Nologo.Domain.Entities
         public string Name { get; set; }
         public string Author { get; set; }
         public string RecipeFileName { get; set; }
+        [Column(TypeName="varchar(MAX)")]
+        [MaxLength]
         public string Instructions { get; set; }
-
-        public virtual List<Ingredients> Ingredients { get; set; }
+        [Column(TypeName = "varchar(MAX)")]
+        [MaxLength]
+        public string Ingredients { get; set; }
     }
 }

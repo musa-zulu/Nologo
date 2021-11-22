@@ -59,7 +59,9 @@ Nologo API solution is built on Onion Architecture with all essential feature us
 
 Please open Visual studio and go to Tools -> NuGet Package Manager -> Package Manager Console
 Set Default project to : Nologo.Persitence
-Then run this command Update-Database -context IdentityContext
+Then run this command 
+
+Update-Database -context IdentityContext
 
 Run the following script 
 

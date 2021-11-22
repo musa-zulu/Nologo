@@ -2,8 +2,8 @@
     (mouseout)="isActive=false">
     <mat-card-content class="image-card">
         <a [routerLink]="['/recipes/details/',recipe.recipeId]" matTooltip="{{recipe.name}}" matTooltipClass="example-tooltip"
-            aria-label="Book title"><img class="preview-image" mat-card-image src="/Upload/{{recipe.coverFileName}}"
-                alt="Book cover image"></a>
+            aria-label="recipe title"><img class="preview-image" mat-card-image src="{{recipe.recipeFileName}}"
+                alt="recipe cover image"></a>
     </mat-card-content>
     <mat-card-content>
         <div class="card-title">
@@ -11,7 +11,5 @@
                 <strong>{{recipe.name}}</strong>
             </a>
         </div>
-        <p>{{recipe.price | currency : 'INR'}}</p>
-        <app-addtocart [recipeId]="recipe.recipeId"></app-addtocart>
     </mat-card-content>
 </mat-card>

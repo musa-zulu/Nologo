@@ -8,8 +8,9 @@ const adminRoutes: Routes = [
     path: '',
     children: [
       { path: 'new', component: RecipeFormComponent },
-      { path: ':id', component: RecipeFormComponent },
+      { path: ':recipeId', component: RecipeFormComponent },
       { path: '', component: ManageRecipesComponent },
+     
     ]
   }
 ];

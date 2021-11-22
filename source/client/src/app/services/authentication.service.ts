@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { SubscriptionService } from './subscription.service';
 import { UserService } from './user.service';
 import { environment } from 'src/environments/environment';
+import { ServerConfig } from './server-config';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,9 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private userService: UserService,
-    private subscriptionService: SubscriptionService) {
-      this.baseURL = this.getBaseUrl();
+    private subscriptionService: SubscriptionService,
+    private _serverConfig: ServerConfig) {
+      this.baseURL = this._serverConfig.getBaseUrl() + 'api/';
      }
 
   login(user) {
@@ -66,9 +68,5 @@ export class AuthenticationService {
 
   generateTempUserId() {
     return Math.floor(Math.random() * (99999 - 11111 + 1) + 12345);
-  }
-
-  public getBaseUrl(): string {
-    return environment.baseUrl;
   }
 }

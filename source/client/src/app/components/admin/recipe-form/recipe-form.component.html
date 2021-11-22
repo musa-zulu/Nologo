@@ -14,12 +14,29 @@
                             <mat-error *ngIf="name.touched && name.invalid">Name is required</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field>
-                            <textarea matInput placeholder="Instructions" formControlName="instructions" cdkTextareaAutosize cdkAutosizeMinRows="6" required>
-                            </textarea>
-                            <mat-error *ngIf="instructions.touched && instructions.invalid">Instructions are required</mat-error>
+                        <mat-form-field class="example-chip-list">
+                            <mat-chip-list #chipList aria-label="Ingredient selection" formControlName="ingredients">
+                                <mat-chip *ngFor="let ingredient of ingredients" [selectable]="selectable"
+                                    [removable]="removable" (removed)="remove(ingredient)">
+                                    {{ingredient.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="add ingredients..." [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-error *ngIf="ingredients.touched && ingredients.invalid">Ingredients are required
+                            </mat-error>
                         </mat-form-field>
-                        
+
+                        <mat-form-field class="full-width">
+                            <textarea matInput placeholder="Instructions" formControlName="instructions"
+                                cdkTextareaAutosize cdkAutosizeMinRows="6" required>
+                            </textarea>
+                            <mat-error *ngIf="instructions.touched && instructions.invalid">Instructions are required
+                            </mat-error>
+                        </mat-form-field>
+
                         <mat-card-actions align="right">
                             <div fxFlex></div>
                             <button type="submit" mat-raised-button color="primary">SAVE</button>
@@ -29,18 +46,22 @@
                 </mat-card-content>
             </mat-card>
         </div>
+
         <div class="right-div">
             <div class="viewer-title">
-                <h6>Image Preview</h6>
+                <h6>Upload Image</h6>
             </div>
             <mat-card class="mat-elevation-z2">
                 <mat-card-content class="image-card">
                     <img class="preview-image" mat-card-image src={{recipeImagePath}} alt="No image available">
                 </mat-card-content>
                 <mat-card-content>
-                    <div class="upload-btn-wrapper mat-elevation-z2">
-                        <button class="btn-upload" type="button" mat-raised-button>Upload image</button>
-                        <input type="file" (change)="uploadImage($event)" />
+                    <div class="row" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+                                style="display:none;">
+                            <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+                        </div>
                     </div>
                 </mat-card-content>
             </mat-card>

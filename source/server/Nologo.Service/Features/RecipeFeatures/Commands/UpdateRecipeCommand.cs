@@ -26,7 +26,6 @@ namespace Nologo.Service.Features.RecipeFeatures.Commands
             public async Task<Response<bool>> Handle(UpdateRecipeCommand request, CancellationToken cancellationToken)
             {
                 var recipe = _mapper.Map<Recipe>(request.RecipeDto);
-
                 if (recipe == null)
                 {
                     return new Response<bool>
@@ -35,6 +34,30 @@ namespace Nologo.Service.Features.RecipeFeatures.Commands
                         Succeeded = false
                     };
                 }
+                var savedRecord = await _recepeService.GetByIdAsync(recipe.RecipeId);
+
+                if (savedRecord != null)
+                {
+                    var data = savedRecord.Data;
+                    
+                    recipe.DateCreated = data.DateCreated;
+
+                    if (recipe.RecipeFileName == null)
+                        recipe.RecipeFileName = data.RecipeFileName;
+                    if (recipe.Author == null)
+                        recipe.Author = data.Author;
+                }
+                if (request.RecipeDto.Ingredients != null)
+                {
+                    foreach (var ingredient in request.RecipeDto.Ingredients)
+                    {
+                        recipe.Ingredients += ingredient.Name + ",";
+                    }
+                }
+                recipe.Ingredients = recipe.Ingredients.Trim(',');
+                recipe.Author = recipe.Author;
+                recipe.DateUpdated = DateTime.UtcNow;
+                recipe.UpdatedBy = recipe.Author;
                 return await _recepeService.UpdateAsync(recipe);
             }
         }

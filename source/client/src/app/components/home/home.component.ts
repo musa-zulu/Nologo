@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Recipe } from 'src/app/models/recipe';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-home',
@@ -9,27 +11,22 @@ import { switchMap } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  //public object: Object[];
-  public filteredProducts: Object[];
-  category: string;
+  public recipes: Recipe[];
 
-  constructor(private route: ActivatedRoute, /*private objectService: ObjectService*/) { }
+  constructor(private _route: ActivatedRoute, private _recipeService: RecipeService) { }
 
   ngOnInit() {
-    //this.getAllObjectData();
+    this.getAllRecipeData();
   }
 
-  // getAllObjectData() {
-  //   this.objectService.getAllObjects().pipe(switchMap(
-  //     (data: Object[]) => {
-  //       this.filteredProducts = data;
-  //       return this.route.queryParams;
-  //     }
-  //   )).subscribe(params => {
-  //     this.category = params['category'];
-  //     this.object = (this.category) ?
-  //       this.filteredProducts.filter(b => b.category.toLowerCase() === this.category.toLowerCase()) :
-  //       this.filteredProducts;
-  //   });
-  // }
+  getAllRecipeData() {
+    this._recipeService.getAllRecipes().pipe(switchMap(
+      (data: any) => {
+        this.recipes = data.data;
+        return this._route.queryParams;
+      }
+    )).subscribe(params => {
+      console.log(params);
+    });
+  }
 }

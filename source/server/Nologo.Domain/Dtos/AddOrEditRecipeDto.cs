@@ -10,5 +10,11 @@ namespace Nologo.Domain.Dtos
         public string Author { get; set; }
         public string RecipeFileName { get; set; }
         public string Instructions { get; set; }
+        public IngredientDto[] Ingredients { get; set; }
+    }
+
+    public class IngredientDto
+    {
+        public string Name { get; set; }
     }
 }

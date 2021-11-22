@@ -14,6 +14,8 @@ using Nologo.Persistence;
 using Nologo.Service;
 using Nologo.Configuration;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
 
 namespace Nologo
 {
@@ -41,13 +43,9 @@ namespace Nologo
 
             services.AddAutoMapper();
 
-            //services.AddIdentityService(Configuration);
-
-            //services.AddSwaggerOpenAPI();
-
             services.AddMailSetting(Configuration);
 
-           //services.AddServiceLayer();
+            services.AddServiceLayer();
 
             services.AddVersion();
 
@@ -112,7 +110,7 @@ namespace Nologo
             app.UseHttpsRedirection();
 
             app.UseCors(options =>
-                 options.WithOrigins("http://localhost:3000")
+                  options
                  .AllowAnyOrigin()
                  .AllowAnyHeader()
                  .AllowAnyMethod());
@@ -132,6 +130,13 @@ namespace Nologo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
             });
         }
 

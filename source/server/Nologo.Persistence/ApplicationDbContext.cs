@@ -18,16 +18,14 @@ namespace Nologo.Persistence
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public DbSet<Ingredients> Ingredients { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             foreach (var property in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetProperties()
                     .Where(p => p.ClrType == typeof(string))))
-                property.SetColumnType("varchar(150)");
+                property.SetColumnType("varchar(MAX)");
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
@@ -48,7 +46,6 @@ namespace Nologo.Persistence
 
         public async Task<int> SaveChangesAsync()
         {
-            //var userId = Microsoft.AspNetCore.Mvc.HttpContext.User?.Identity?.Name ?? "SYS";
             var userId = "SYS";
             var addedAuditedEntities = ChangeTracker.Entries<BaseEntity>().Where(p => p.State == EntityState.Added)
                 .Select(p => p.Entity);

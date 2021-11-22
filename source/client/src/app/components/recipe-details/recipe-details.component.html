@@ -1,0 +1,46 @@
+<div class="viewer-wrapper">
+    <div class="viewer-title mat-elevation-z2">
+        <div class="viewer-title-spacer">
+            <h3>Recipe Details</h3>
+        </div>
+    </div>
+    <div class="viewer-body">
+        <div class="left-div">
+            <mat-card-content class="image-card">
+                <img *ngIf="recipe" class="preview-image" mat-card-image src="{{recipe.recipeFileName}}"
+                    alt="No image available">
+            </mat-card-content>
+        </div>
+        <div class="right-div">
+            <table *ngIf="recipe" class="table">
+                <tr>
+                    <td><strong>Recipe Name</strong></td>
+                    <td>{{recipe.name}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Date</strong></td>
+                    <td>{{recipe.dateCreated}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Author</strong></td>
+                    <td>{{recipe.author}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Ingredients</strong></td>
+                    <td style="text-align: left !important;">
+                        <ol *ngFor="let ingredient of ingredients">
+                            <ul> {{ingredient.name}} </ul>
+                        </ol>                        
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <div class="viewer-body">
+        <div *ngIf="recipe">
+            <strong>Instructions</strong>
+            <p>{{recipe.instructions}}</p>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ import { ErrorInterceptorService } from './interceptors/error-interceptor.servic
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
     HomeComponent,
     NavBarComponent,
     PageNotFoundComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    RecipeDetailsComponent    
   ],
   imports: [
     NgMaterialModule,

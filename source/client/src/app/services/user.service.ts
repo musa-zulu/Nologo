@@ -18,7 +18,7 @@ export class UserService {
   }
 
   registerUser(userdetails) {
-    return this.http.post(this.baseURL + 'account/new-account', userdetails)
+    return this.http.post(this.baseURL + 'api/account/new-account', userdetails)
       .pipe(map(response => {
         return response;
       }));

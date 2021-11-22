@@ -177,7 +177,7 @@ namespace Nologo.Service.Implementation
                 _applicationDbContext.Set<T>().Update(entity);
                 return new Response<bool>
                 {
-                    Message = $"Object's were deleted successfully!",
+                    Message = $"Object's was updated successfully!",
                     Succeeded = await _applicationDbContext.SaveChangesAsync() > 0
                 };
             }

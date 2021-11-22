@@ -35,7 +35,20 @@ namespace Nologo.Service.Features.RecipeFeatures.Commands
                         Succeeded = false
                     };
                 }
+
+                if (request.RecipeDto.Ingredients != null)
+                {
+                    foreach (var ingredient in request.RecipeDto.Ingredients)
+                    {
+                        recipe.Ingredients += ingredient.Name + ",";
+                    }
+                }
                 recipe.RecipeId = Guid.NewGuid();
+                recipe.DateUpdated = DateTime.UtcNow;
+                recipe.DateCreated = DateTime.UtcNow;
+                recipe.AddedBy = recipe.Author;
+                recipe.UpdatedBy = recipe.Author;
+
                 return await _recipeService.AddAsync(recipe);
             }
         }

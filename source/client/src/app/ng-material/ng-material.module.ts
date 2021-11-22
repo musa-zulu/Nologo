@@ -4,13 +4,14 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule, MatIconModule, MatDividerModule, MatRadioModule, MatProgressSpinnerModule,
   MatPaginatorModule, MatSortModule, MatTooltipModule, MatSelectModule, MatSidenavModule, MatCheckboxModule,
-  MatBadgeModule, MatSnackBarModule, MatSlideToggleModule, MatGridListModule, MatListModule
+  MatBadgeModule, MatSnackBarModule, MatSlideToggleModule, MatGridListModule, MatListModule, MatChipsModule
 } from '@angular/material';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    MatIconModule,
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
@@ -32,7 +33,9 @@ import {
     MatSnackBarModule,
     MatSlideToggleModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule,
+    MatSelectModule,
   ],
   exports: [
     CommonModule,
@@ -57,7 +60,9 @@ import {
     MatSnackBarModule,
     MatSlideToggleModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatChipsModule,
+    MatSelectModule,
   ]
 })
 export class NgMaterialModule { }

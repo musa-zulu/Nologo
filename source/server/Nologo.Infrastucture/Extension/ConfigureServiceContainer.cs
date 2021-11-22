@@ -34,7 +34,6 @@ namespace Nologo.Infrastructure.Extension
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new RecipeProfile());
-                mc.AddProfile(new IngredientsProfile());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             serviceCollection.AddSingleton(mapper);
@@ -49,7 +48,6 @@ namespace Nologo.Infrastructure.Extension
         {
             serviceCollection.AddTransient<IDateTimeService, DateTimeService>();
             serviceCollection.AddTransient<IEmailService, MailService>();
-            serviceCollection.AddTransient<IIngredientService, IngredientService>();
             serviceCollection.AddTransient<IRecipeService, RecipeService>();
         }
         public static void AddSwaggerOpenAPI(this IServiceCollection serviceCollection)

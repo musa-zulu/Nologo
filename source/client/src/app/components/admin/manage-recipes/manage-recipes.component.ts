@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatTable } from '@angular/material';
 import { Recipe } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -14,12 +14,14 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ManageRecipesComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'name', 'author', 'instructions', 'operation'];
+  displayedColumns: string[] = ['name', 'author', 'instructions', 'operation'];
 
   dataSource = new MatTableDataSource<Recipe>();
+  pageLength: number = 0;
+  recipes: Recipe[];
+  filteredRecipes: Recipe[] = [];
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
   private unsubscribe$ = new Subject<void>();
   constructor(
@@ -30,29 +32,29 @@ export class ManageRecipesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getAllRecipeData();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   getAllRecipeData() {
     this.recipeService.getAllRecipes()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data: Recipe[]) => {
-        this.dataSource.data = Object.values(data);
+      .subscribe((recipes: any) => {        
+        this.recipes = recipes.data;
+        this.onPageChanged(null);
       }, error => {
         console.log('Error ocurred while fetching recipe details : ', error);
       });
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: any) {
+    let searchTerm = filterValue.target.value.toLocaleLowerCase();
+    const filteredUsers = searchTerm
+      ? this.recipes.filter((p) => p.name.toLowerCase().includes(searchTerm))
+      : this.recipes;
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.initializeTable(filteredUsers);
   }
 
-  deleteConfirm(id: number): void {
+  deleteConfirm(id: string): void {
     const dialogRef = this.dialog.open(DeleteRecipeComponent, {
       data: id
     });
@@ -67,6 +69,28 @@ export class ManageRecipesComponent implements OnInit, OnDestroy {
           this.snackBarService.showSnackBar('Error occurred!! Try again');
         }
       });
+  }
+
+  refreshTable() {
+    this.getAllRecipeData();
+  }
+
+  onPageChanged(e: { pageIndex: number; pageSize: number }): void {
+    let filteredRecipes = [];
+    if (e == null) {
+      let firstCut = 0;
+      let secondCut = firstCut + 5;
+      filteredRecipes = this.recipes.slice(firstCut, secondCut);
+    } else {
+      let firstCut = e.pageIndex * e.pageSize;
+      let secondCut = firstCut + e.pageSize;
+      filteredRecipes = this.recipes.slice(firstCut, secondCut);
+    }
+    this.initializeTable(filteredRecipes);
+  }
+
+  private initializeTable(recipes: Recipe[]) {
+    this.dataSource = new MatTableDataSource<Recipe>(recipes);
   }
 
   ngOnDestroy() {

@@ -14,7 +14,7 @@ export class DeleteRecipeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DeleteRecipeComponent>,
-    @Inject(MAT_DIALOG_DATA) public recipeid: number,
+    @Inject(MAT_DIALOG_DATA) public recipeid: string,
     private recipeService: RecipeService) {
   }
 
@@ -32,8 +32,8 @@ export class DeleteRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.recipeService.getRecipeById(this.recipeid).subscribe(
-      (result: Recipe) => {
-        this.recipeData = result;
+      (result: any) => {
+        this.recipeData = result.data;
       }, error => {
         console.log('Error ocurred while fetching recipe data : ', error);
       });
