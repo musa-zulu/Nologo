@@ -91,7 +91,7 @@ This Nologo api contains following features.
 - [x] Loggings - seriLog
 - [x] Email
 - [x] JWT authentication
-- [x] React-redux for UI
+- [x] Angular for UI
 - [x] Fluent validations
 
 ## Project description
